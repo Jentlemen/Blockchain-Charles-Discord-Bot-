@@ -33,13 +33,22 @@ def grab_q():
 async def quote(cfx):
     await bot.say(grab_q())
 
-    
-#bot will respond with a math stuff 
+
+#change all ^ in provided eq with ** for py
+#for increased user friendliness 
+def exp_swap(eq):
+    #eq2 = eq.split("^")
+    eq = eq.replace('^', "**")
+    return eq
+        
+        
+#bot will respond to simple math equations
 @bot.command(pass_context=True)
 
 async def math(cfx, equation):
-    await bot.say(eval(equation))
+    await bot.say(eval(exp_swap(equation)))
     #await bot.say("Bézout's lemma")
+
 
 #help command
 bot.remove_command('help')
@@ -48,10 +57,12 @@ async def help(ctx):
     embed = discord.Embed(title="Blockchain Charles", description="Im Charles. My commands are:", color=0xff69b4)
     embed.add_field(name="~quote", value="I say one of my infamous quotes", inline=False)
     embed.add_field(name="~math", value="I calculate easy math equations"
-    "\n you can add (+), subtract (-), divide (/) \n and multiply (*), more functions will be added soon", inline=False)
+    "\nyou can add (+), subtract (-), divide (/), multiply (*)\n"
+    "and use exponents (^)!", inline=False)
     await bot.say(embed=embed)
 
-#read the token from the 
+
+#read the token from the file token.txt
 tok = open("token.txt", "r")
 contents = tok.read()
 
