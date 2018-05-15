@@ -13,12 +13,18 @@ bot = commands.Bot(command_prefix = '~')
 async def ready():
     print("hello")
 
-#grabs quote from a file
+@bot.command(pass_context=True)
+async def help(cfx):
+    await bot.say("help - placeholder")
+
+#grabs a rand quote from a file
+#first line of quotes.txt must be # of quotes in the file
 def grab_q():
     q = open("quotes.txt", "r")
-    q_len = q.readline()
-    ran = random.randint(1,int(q_len))
+    q_len = q.readline() #grab num from line 0 
+    ran = random.randint(1,int(q_len)) # make rand# from 1-q_len
     quote = q.readline()
+    #grab the quote from line ran
     while True:
         ran -=1 
         if(not(ran)): return quote
@@ -30,6 +36,7 @@ def grab_q():
 async def quote(cfx):
     await bot.say(grab_q())
 
+#read the token from the 
 tok = open("token.txt", "r")
 contents = tok.read()
 
