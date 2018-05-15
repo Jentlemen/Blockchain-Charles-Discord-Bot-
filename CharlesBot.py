@@ -47,7 +47,8 @@ bot.remove_command('help')
 async def help(ctx):
     embed = discord.Embed(title="Blockchain Charles", description="Im Charles. My commands are:", color=0xff69b4)
     embed.add_field(name="~quote", value="I say one of my infamous quotes", inline=False)
-    embed.add_field(name="~math", value="I calculate easy math", inline=False)
+    embed.add_field(name="~math", value="I calculate easy math equations"
+    "\n you can add (+), subtract (-), divide (/) \n and multiply (*), more functions will be added soon", inline=False)
     await bot.say(embed=embed)
 
 #read the token from the 
