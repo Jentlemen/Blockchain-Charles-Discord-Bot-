@@ -13,10 +13,6 @@ bot = commands.Bot(command_prefix = '~')
 async def ready():
     print("hello")
 
-@bot.command(pass_context=True)
-async def help(cfx):
-    await bot.say("help - placeholder")
-
 #grabs a rand quote from a file
 #first line of quotes.txt must be # of quotes in the file
 def grab_q():
@@ -35,6 +31,10 @@ def grab_q():
 @bot.command(pass_context=True)
 async def quote(cfx):
     await bot.say(grab_q())
+
+#help command
+async def help(cfx):
+    await bot.say("help - placeholder")
 
 #read the token from the 
 tok = open("token.txt", "r")
