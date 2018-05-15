@@ -29,12 +29,26 @@ def grab_q():
 
 #bot will respond with a quote 
 @bot.command(pass_context=True)
+
 async def quote(cfx):
     await bot.say(grab_q())
 
+    
+#bot will respond with a math stuff 
+@bot.command(pass_context=True)
+
+async def math(cfx, equation):
+    await bot.say(eval(equation))
+    #await bot.say("Bézout's lemma")
+
 #help command
-async def help(cfx):
-    await bot.say("help - placeholder")
+bot.remove_command('help')
+@bot.command(pass_context=True)
+async def help(ctx):
+    embed = discord.Embed(title="Blockchain Charles", description="Im Charles. My commands are:", color=0xff69b4)
+    embed.add_field(name="~quote", value="I say one of my infamous quotes", inline=False)
+    embed.add_field(name="~math", value="I calculate easy math", inline=False)
+    await bot.say(embed=embed)
 
 #read the token from the 
 tok = open("token.txt", "r")
